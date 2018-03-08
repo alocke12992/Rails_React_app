@@ -1,0 +1,8 @@
+{
+  "name": "rwr",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:alocke12992/Rails_React_app.git",
+  "author": "Andrew Locke <alocke12992@gmail.com>",
+  "license": "MIT"
+}

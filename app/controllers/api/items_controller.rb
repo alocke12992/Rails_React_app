@@ -1,5 +1,5 @@
 class Api::ItemsController < ApplicationController
-  
+
   before_action :set_item, only: [:update, :destroy]
 
   def index 
@@ -33,7 +33,4 @@ class Api::ItemsController < ApplicationController
     def set_item 
       @item = Item.find(params[:id])
     end 
-
-
-
 end

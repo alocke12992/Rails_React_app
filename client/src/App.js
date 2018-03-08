@@ -18,7 +18,12 @@ class App extends Component {
 
 
   updateTodo = (id) => {
-    //TODO #update
+    let todos = this.state.todos.map( t => {
+      if (t.id === id)
+        return { ...t, complete: !t.complete }
+      return t 
+    })
+    this.setState({ todos })
   }
 
 

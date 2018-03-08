@@ -4,7 +4,10 @@ class TodoForm extends React.Component {
   state = { title: ''}
 
   handleChange = (e) => {
-
+    //let name = 'title'
+    //this.state[name]
+    const { name, value } = e.target 
+    this.setState({ [name]: value })
   }
 
   handleSubmit = (e) => {
@@ -21,6 +24,7 @@ class TodoForm extends React.Component {
           onChange={this.handleChange}
           name="title"
         /> 
+
       </form>
     )
   }

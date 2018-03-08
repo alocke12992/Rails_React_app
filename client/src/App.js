@@ -11,10 +11,19 @@ class App extends Component {
   }
 
   addItem = (name) => {
-    const { todos } = this.state;
-    const id = Math.floor(Math.random() * 1000)
-    const todo = { name, id, complete: false }
-    this.setState({ todos: [...todos, todo]})
+    let item = { name }
+    fetch('/api/items', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }, 
+      body: JSON.stringify(item)
+    }).then( res => res.json() )
+      .then( todo => {
+        const { todos } = this.state;
+        this.setState({ todos: [...todos, todo]})
+      })
   }
 
 

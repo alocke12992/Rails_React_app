@@ -6,8 +6,8 @@ import Nav from './components/Nav';
 class App extends Component {
   state = { todos: [] }
 
-  componentDidMount () {
-    //TODO #index 
+  componentDidMount() {
+    //TODO #index
   }
 
   addItem = (name) => {
@@ -17,30 +17,29 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
-      }, 
+      },
       body: JSON.stringify(item)
     }).then( res => res.json() )
       .then( todo => {
         const { todos } = this.state;
-        this.setState({ todos: [...todos, todo]})
+        this.setState({ todos: [...todos, todo] })
       })
   }
-
 
   updateTodo = (id) => {
     let todos = this.state.todos.map( t => {
       if (t.id === id)
         return { ...t, complete: !t.complete }
-      return t 
+      return t
     })
+
     this.setState({ todos })
   }
 
-
   deleteTodo = (id) => {
     const { todos } = this.state
-    this.setState({
-      todos: todos.filter( t => t.id !== id)
+    this.setState({ 
+      todos: todos.filter( t => t.id !== id ) 
     })
   }
 
@@ -48,13 +47,13 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <Nav /> 
+        <Nav />
         <TodoForm addItem={this.addItem} />
-        <TodoList 
+        <TodoList
           todos={this.state.todos}
           updateTodo={this.updateTodo}
           deleteTodo={this.deleteTodo}
-        /> 
+        />
       </div>
     );
   }

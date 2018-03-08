@@ -6,27 +6,34 @@ class App extends Component {
   state = { todos: [] }
 
   componentDidMount () {
-    //TODO 
+    //TODO #index 
   }
 
   addItem = (name) => {
-    //TODO 
+    //TODO #create 
   }
 
 
   updateTodo = (id) => {
-    //TODO 
+    //TODO #update
   }
 
 
   deleteTodo = (id) => {
-    //TODO 
+    //TODO #destroy 
   }
 
-  
+
   render() {
     return (
-      
+      <div className="container">
+        <TodoForm addItem={this.addItem} />
+        <TodoList 
+          todos={this.state.todos}
+          updateTodo={this.updateTodo}
+          deleteTodo={this.deleteTodo}
+        /> 
+      </div>
     );
   }
 }

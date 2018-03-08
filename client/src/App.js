@@ -3,11 +3,14 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import Nav from './components/Nav';
 
+
 class App extends Component {
   state = { todos: [] }
 
   componentDidMount() {
-    //TODO #index
+    fetch('/api/items')
+      .then( res => res.json() )
+      .then( todos => this.setState({ todos }) )
   }
 
   addItem = (name) => {
@@ -27,20 +30,28 @@ class App extends Component {
   }
 
   updateTodo = (id) => {
-    let todos = this.state.todos.map( t => {
-      if (t.id === id)
-        return { ...t, complete: !t.complete }
-      return t
-    })
+    fetch(`/api/items/${id}`, { method: 'PUT' })
+      .then( res => res.json() )
+      .then( item => {
+        let todos = this.state.todos.map( t => {
+          if (t.id === id)
+            return item
+          return t
+        })
 
-    this.setState({ todos })
+        this.setState({ todos })
+      })
+
   }
 
   deleteTodo = (id) => {
-    const { todos } = this.state
-    this.setState({ 
-      todos: todos.filter( t => t.id !== id ) 
-    })
+    fetch(`/api/items/${id}`, { method: 'DELETE' })
+      .then( () => {
+        const { todos } = this.state
+        this.setState({ 
+          todos: todos.filter( t => t.id !== id ) 
+        })
+      })
   }
 
 

@@ -10,7 +10,10 @@ class App extends Component {
   }
 
   addItem = (name) => {
-    //TODO #create 
+    const { todos } = this.state;
+    const id = Math.floor(Math.random() * 1000)
+    const todo = { name, id, complete: false }
+    this.setState({ todos: [...todos, todo]})
   }
 
 
